@@ -2,7 +2,7 @@
 
 
 ## Project Page:
-See this [page](https://Collebt.github.io/EM-CVGL).
+See this [page](https://collebt.github.io/EM-CVGL).
 
 ## Overview
 A self-supervised learning framework to train a learnable adapter for a frozen Foundation Model (FM) on the task of drone-to-satellite cross-view geo-localization.
