@@ -1,0 +1,57 @@
+#model
+model: 
+  name: AnyLoc
+  dino_model: dinov2_vitg14
+  desc_layer: 31
+  desc_facet: value
+  num_c: 8
+  aggre_type: GAP
+
+# data reader
+workers: 4
+
+#training strategy
+train:
+  dataset: None
+  data_path: data/University-Release/train
+  transform:
+    - ColorJitter
+    - Resize256
+    - Pad10
+    - RandomAffine90
+    - RandomCrop256
+    - RandomHorizontalFlip
+    - ToTensor
+    - normalize
+  loss: 
+    - InfoNCE
+  loss_w:
+    - 1
+  label_smoothing: 0.1
+  epochs: 200
+  save_epoch: 20
+  eval_epoch: 20
+  batch_size: 128
+  lr_proj: 0.01
+  lr_gnn: 0.001
+  lr_decay: 0.1
+  lr_step_size: 80
+  warm_epoch: 0
+  optim: Adam
+
+
+eval:
+  dataset: U1652_Image_D2S
+  data_path: data/University-Release/train
+  batch_size: 64
+  output: feat #feat/vec
+  pos_eval: false
+  refine: false
+  transform: 
+    - Resize256
+    - CenterCrop252
+    - ToTensor
+    - normalize
+
+
+

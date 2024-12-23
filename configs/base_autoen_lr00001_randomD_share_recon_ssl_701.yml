@@ -1,0 +1,63 @@
+#model
+model: 
+  name: AutoEnc2_share
+  out_dim: 1536
+  vec_dim: 2048
+  num_steps: 1
+  norm: true
+  normvec: true
+  identify: false
+  query_num: 700
+
+# data reader
+workers: 4
+
+#training strategy
+train:
+  dataset: U1652_Random_drone
+  data_path: data/University-Release/train
+  dro_num: 1
+  feat: anyloc_feat
+  loss: 
+    - CycleAELoss
+  loss_w:
+    - 1
+  lambda_A: 1.
+  lambda_B: 1.
+  idt_w: 1.
+  feat_w: 0.001
+
+  label_smoothing: 0.1
+  epochs: 200
+  save_epoch: 10
+  eval_epoch: 10
+  batch_size: 701
+  lr: 0.0002
+  # lr_decay: 0.1
+  # lr_step_size: 200
+  warm_epochs: 1
+  optim: AdamW
+  scheduler: cosine
+  custom_sampling: false
+  decay_exclue_bias: false
+  clip_grad: 100.
+  mixed_precision: false
+  remove_junk: false
+  pseudo_thr: 0.1
+  split: 1
+  mutual_match: True
+  keep_neg: True
+
+
+
+eval:
+  dataset: Feat_Single
+  data_path: data/University-Release/test
+  feat:  anyloc_feat
+  batch_size: 256
+  output: feat #feat/vec
+  pos_eval: false
+  refine: false
+  remove_junk: true
+
+
