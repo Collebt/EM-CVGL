@@ -19,7 +19,11 @@ pip install -r requirements.txt
 - Dataset: Download the University-1652 dataset from [here] (https://github.com/layumi/University1652-Baseline) and put them on `~/data/`
 - Extract Initial Features: 
 ```
+# prepare training data
 python test.py configs/base_anyloc_D2S.yml --save_dir data/University-Release/train/anyloc_gap
+
+# prepare test data 
+python test.py configs/test_anyloc_D2S.yml --save_dir data/University-Release/test/anyloc_gap 
 ```
 
 
