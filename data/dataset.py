@@ -38,8 +38,11 @@ class U1652_Image_D2S(data.Dataset):
         self.transforms = build_transform(transform)
         # _, self.transforms = clip.load("ViT-B/32", device='cuda')
 
-        # img_dir = 'query_drone' if mode == 'dro' else 'gallery_satellite' # dro=query, sat=gallery
-        img_dir = 'drone' if mode == 'dro' else 'satellite' # dro=query, sat=gallery
+        if 'train' in data_path: # training data
+            img_dir = 'drone' if mode == 'dro' else 'satellite' # dro=query, sat=gallery
+        else: # test data 
+            img_dir = 'query_drone' if mode == 'dro' else 'gallery_satellite' # dro=query, sat=gallery
+        
         self.mode = mode
         self.img_dir = osp.join(HOME, data_path, img_dir)
         self.file_list = []
