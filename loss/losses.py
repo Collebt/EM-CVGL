@@ -104,7 +104,7 @@ class CycleAELoss(nn.Module):
         loss_pseudo = filter_InfoNCE(sel_mat, sel_mat_T, logit_scale_exp, self.loss_function, labels1, labels2)
 
         
-
+        # for evaluation during training
         _, gt_idx = gt_mask.max(-1)
 
         real_acc = (sel_idx == gt_idx.to(sel_idx)).sum() / torch.tensor(len(sel_mat)).to(torch.float)

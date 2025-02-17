@@ -5,7 +5,7 @@ model:
   desc_layer: 31
   desc_facet: value
   num_c: 8
-  aggre_type: GAP
+  aggre_type: GeM
 
 # data reader
 workers: 4
